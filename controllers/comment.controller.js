@@ -72,9 +72,6 @@ export const ControllerDeleteComment=asyncHandler(async(req,res)=>{
     if(!comment){
         return res.status(400).json({ error: 'Comment not found' });
     }
-    if(req.user.user_id!==comment.user_id){
-        return res.status(400).json({ error: 'Unauthorized user' });
-    }
     await deleteComment(comment_id);
     res.status(201).json({
         message: 'Comment deleted successfully'

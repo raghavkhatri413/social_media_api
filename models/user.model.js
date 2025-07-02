@@ -1,7 +1,7 @@
 import pool from "../db.js";
 
-export async function createUser(email,password,username){
-    const res=await pool.query('insert into users (email,password,username) values ($1,$2,$3) returning *',[email,password,username]);
+export async function createUser(email,password,username,userRole){
+    const res=await pool.query('insert into users (email,password,username,role) values ($1,$2,$3,$4) returning *',[email,password,username,userRole]);
     return res.rows[0];
 }
 

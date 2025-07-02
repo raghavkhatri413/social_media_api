@@ -70,9 +70,6 @@ export const ControllerDeletePost=asyncHandler(async(req,res)=>{
     if (!post) {
         return res.status(400).json({ error: 'Post not found' });
     }
-    if(req.user.user_id!==post.user_id){
-        return res.status(400).json({ error: 'Unauthorized user' });
-    }
     await deletePost(id);
     res.status(201).json({
         message: 'Post deleted successfully'
