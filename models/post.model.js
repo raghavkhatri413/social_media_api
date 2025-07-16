@@ -10,6 +10,11 @@ export async function getPostByID(id){
     return res.rows[0];
 }
 
+export async function getAllPosts(){
+    const res=await pool.query('select * from posts');
+    return res.rows;
+}
+
 export async function getAllPostsByUserID(user_id){
     const res=await pool.query('select * from posts where user_id=$1',[user_id]);
     return res.rows;

@@ -38,10 +38,7 @@ export const ControllerGetCommentsByPostID=asyncHandler(async(req,res)=>{
         return res.status(400).json({ error: 'Post not found' });
     }
     const comments=await getCommentsByPostID(post_id);
-    res.status(201).json({
-        message: 'Comment fetched successfully',
-        comments: comments
-    });
+    res.status(201).json(comments);
 });
 
 export const ControllerUpdateComment=asyncHandler(async(req,res)=>{
@@ -54,9 +51,9 @@ export const ControllerUpdateComment=asyncHandler(async(req,res)=>{
     if(!comment){
         return res.status(400).json({ error: 'Comment not found' });
     }
-    if(req.user.user_id!==comment.user_id){
-        return res.status(400).json({ error: 'Unauthorized user' });
-    }
+    // if(req.user.user_id!==comment.user_id){
+    //     return res.status(400).json({ error: 'Unauthorized user' });
+    // }
     const updatedComment=await updateComment(comment_text,comment_id);
     res.status(201).json({
         message: 'Comment updated successfully',
